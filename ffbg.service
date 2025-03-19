@@ -1,0 +1,9 @@
+[Unit]
+Description=Firefox background to BING
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/bingcopier.sh
+
+[Install]
+WantedBy=default.target

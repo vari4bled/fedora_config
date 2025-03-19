@@ -1,0 +1,12 @@
+[Unit]
+Description=FF homepage background changer
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnBootSec=120
+Unit=ffbg.service
+
+[Install]
+WantedBy=timers.target
