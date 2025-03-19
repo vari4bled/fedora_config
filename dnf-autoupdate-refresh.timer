@@ -1,5 +1,5 @@
 [Unit]
-Description=Daily apt download activities
+Description=Daily dnf repo refresh
 
 [Timer]
 OnCalendar=*-*-* 04:0:00
