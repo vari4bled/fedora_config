@@ -1,0 +1,12 @@
+[Unit]
+Description=Block suspend while audio is playing
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnCalendar=*-*-* *:*:00
+Unit=audiocaffeine.service
+
+[Install]
+WantedBy=timers.target

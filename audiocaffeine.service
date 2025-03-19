@@ -1,0 +1,12 @@
+[Unit]
+Description=Blocks suspend when audio is playing
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/audiocaffeinev2.sh
+Restart=always
+RestartSec=10
+LogLevelMax=3
+
+[Install]
+WantedBy=default.target
