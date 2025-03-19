@@ -1,0 +1,13 @@
+[Unit]
+Description=Daily dnf upgrade and clean activities
+Documentation=man:apt(8)
+ConditionACPower=true
+After=apt-daily.service network.target network-online.target systemd-networkd.service NetworkManager.service connman.service
+ConditionPathExists=!/run/ostree-booted
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:0
+ExecStart=%h/.local/bin/fedora-updater.sh
+KillMode=process
+TimeoutStopSec=900
