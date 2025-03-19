@@ -1,0 +1,26 @@
+#!/bin/sh
+# HISTFILE="$XDG_DATA_HOME"/zsh/history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export PATH="$HOME/.local/bin":$PATH
+#export PATH=$PATH:/home/zsolt/scripts
+#export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+export DEBIAN_FRONTEND=noninteractive
+export PATH=$HOME/.local/share/go/bin:$PATH
+#export GOPATH=$HOME/.local/share/go
+export VKBASALT_CONFIG_FILE=/home/endevoor/.config/vkbasalt/vkBasalt.conf
+#export GDK_DPI_SCALE=1.0
+export AMD_VULKAN_ICD=RADV
+#export QT_QPA_PLATFORMTHEME=qt5ct
+#export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+export STEAM_FORCE_DESKTOPUI_SCALING='1.5'
+export MOZ_ENABLE_WAYLAND=1
+#QT_STYLE_OVERRIDE=kvantum
+#GTK_USE_PORTAL=1
+#export GDK_SCALE=2
+#eval "$(fnm env)"
+#eval "$(zoxide init zsh)"
+# eval "`pip completion --zsh`"
+#QT_STYLE_OVERRIDE=kvantum
+

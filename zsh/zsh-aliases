@@ -1,0 +1,38 @@
+#!/bin/sh
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# easier to read disk
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+alias ls='ls --color=auto'
+
+#custom system
+alias zypper='sudo zypper'
+
+#custom
+alias homexyz='ssh pi@192.168.192.99'
+alias rpisweden='ssh pi@10.8.3.3'
+alias valheimserver='/home/zsolt/.local/share/Steam/steamapps/common/Valheim\ dedicated\ server/start_server.sh'
+alias win10='sudo virsh start win10'
+alias sshfspi='sudo sshfs -o allow_other,default_permissions pi@192.168.192.99:/ /mnt/ssh'
+alias mysweeth='ssh -p 19199 mysweeth@mysweethungary.com'
+alias tshock='cd /home/zsolt/games/gameservers/TShock4.5.12_Terraria1.4.3.2/ ; mono-sgen TerrariaServer.exe'
+alias dstserver='bash /home/zsolt/productivity/scripts/run_dedicated_servers.sh'
+alias minecrafts='bash /home/zsolt/games/gameservers/minecraftlauncher.sh &'
+alias minecraft='bash /home/zsolt/games/UltimMC/UltimMC &'
+alias terrarias='bash /home/zsolt/.local/share/Steam/steamapps/common/tModLoader/start-tModLoaderServer.sh'
