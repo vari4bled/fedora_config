@@ -1,9 +1,0 @@
-[Unit]
-Description=Blocks suspend when audio is playing
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/audiocaffeine.sh
-
-[Install]
-WantedBy=default.target
