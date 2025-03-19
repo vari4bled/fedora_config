@@ -20,7 +20,6 @@ done
 #cp ~/productivity/bing/wallp.png ~/.config/BraveSoftware/Brave-Browser/Default/sanitized_background_images/sanitized_background_image-1-1.png
 for DIR in ~/.mozilla/firefox/*; do
   if [ -e "$DIR/chrome/img/" ]; then
-   echo $DIR
    cp ~/Pictures/wallp.png $DIR/chrome/img/background.png
   fi
 done
