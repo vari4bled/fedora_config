@@ -71,15 +71,49 @@ sudo chsh $userName -s /bin/zsh
 #mount nfs drives
 echo "192.168.192.99:/home/pi/camera /mnt/camera nfs proto=tcp,noatime,x-systemd.requires=network-online.target,x-systemd.automount,_netdev,user,noauto 0 0"  | sudo tee -a /etc/fstab
 echo "192.168.192.99:/home/pi/Torrent/Data/Finished /mnt/nfs nfs proto=tcp,noatime,x-systemd.requires=network-online.target,x-systemd.automount,_netdev,user,noauto 0 0" | sudo tee -a /etc/fstab
-sudo cp /home/$userName/productivity/scripts/ffbg* /etc/systemd/system/
-sudo cp /home/$userName/productivity/scripts/audiocaffeine.service /etc/systemd/system/
-sudo systemctl enable audiocaffeine
-sudo systemctl enable ffbg.timer
-sudo systemctl enable ffbg.service
+cp ./ffbg* ~/.config/systemd/user/
+cp ./audiocaffeine.service ~/.config/systemd/user/
+cp ./bingcopier.sh ~/.local/bin/
+cp ./audiocaffeinev2.sh ~/.local/bin/
+cp ./audiocaffeinev2loop.sh ~/.local/bin/
+systemctl --user daemon-reload
+systemctl --user enable ffbg.timer
+systemctl --user enable audiocaffeine.service
+#about:config enable  toolkit.legacyUserProfileCustomizations.stylesheets
+mozzillaFolderGuess= $ (find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}')
+if [[ $mozzillaFolderGuess == *"default-release"* ]]; then
+   if ! [ -e $mozzillaFolderGuess/chrome/img ]; then
+    mkdir -p $mozzillaFolderGuess/chrome/img
+ fi
+fi
+if [[ $(  find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}') == *"default-release"* ]]; then
+ if ! [ -e $(  find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}')/chrome/img ]; then
+    mkdir -p $(  find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}')/chrome/img
+ fi
+ if ! [ -e $(  find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}')/chrome/userContent.css ]; then
+  echo  """@-moz-document url(about:home), url(about:newtab), url(about:privatebrowsing) {
+    .click-target-container *, .top-sites-list * {
+        color: #fff !important ;
+        text-shadow: 2px 2px 2px #222 !important ;
+    }
 
+    body::before {
+        content: \"\" ;
+        z-index: -1 ;
+        position: fixed ;
+        top: 0 ;
+        left: 0 ;
+        background: #f9a no-repeat url(img/background.png) center ;
+        background-size: cover ;
+        width: 100vw ;
+        height: 100vh ;
+    }
+}
+    """ >> $(  find ~/.mozilla/firefox/ -maxdepth 1 -type d  -printf '%T@ %p\n' | grep -v "Crash\|Pending" | sort -k1,1nr | head -1 | awk  '{print $2}')/chrome/userContent.css
+ fi
+fi
 #fix gnome session to take environment variables
 sudo sed -i 's@#!/bin/sh@#!/bin/sh -l@' /bin/gnome-session
-
 #environment variables for AMD guys
 echo 'STEAM_FORCE_DESKTOPUI_SCALING="1.5"' | sudo tee -a /etc/environment
 echo "RUSTICL_ENABLE=radeonsi" | sudo tee -a /etc/environment
