@@ -58,6 +58,7 @@ ZSH=$HOME/.local/share/zsh/oh-my-zsh
 source $HOME/.config/zsh/zsh-exports
 source $HOME/.config/zsh/zsh-aliases
 source $HOME/.config/zsh/zsh-plugins
+ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
